@@ -16,7 +16,7 @@ async function saveImageFromURL(fileURL) {
   return `/api/public/${time}.jpg`;
 }
 const configuration = new Configuration({
-  apiKey: "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",
+  apiKey: "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",
 });
 const openai = new OpenAIApi(configuration);
 

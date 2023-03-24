@@ -31,7 +31,10 @@ router.get("/", async function (request, response) {
     });
     postsOutput = postsOutput.concat(JSON.parse(JSON.stringify(posts)));
   }
-  console.log("hmm",postsOutput);
+  console.log("hmm", postsOutput);
+  postsOutput.sort((a, b) => {
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+  });
   return response.status(200).json(postsOutput);
 });
 router.get("/club", async function (request, response) {
@@ -39,6 +42,7 @@ router.get("/club", async function (request, response) {
     where: {
       clubId: request.query.clubId,
     },
+    order: [["createdAt", "DESC"]],
   });
   return response.status(200).json(JSON.parse(JSON.stringify(posts)));
 });

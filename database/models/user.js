@@ -36,6 +36,17 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "userLogin",
       sourceKey: "login",
     });
+    User.hasMany(models.Event, {
+      as: "myEvents",
+      foreignKey: "userLogin",
+      sourceKey: "login",
+    });
+    User.belongsToMany(models.Event, {
+      through: models.EventParticipant,
+      as: "subscribedEvents",
+      foreignKey: "userLogin",
+      sourceKey: "login",
+    });
   };
   return User;
 };

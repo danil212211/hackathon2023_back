@@ -28,11 +28,6 @@ module.exports = (sequelize, DataTypes) => {
       targetKey: "login",
       foreignKey: "userLogin",
     });
-    Vacancy.belongsToMany(models.User, {
-      through: models.EventParticipant,
-      foreignKey: "eventId",
-      sourceKey: "id",
-    });
   };
-  return Event;
+  return Vacancy;
 };

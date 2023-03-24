@@ -34,6 +34,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "clubId",
       sourceKey: "id",
     });
+    InterestClub.hasMany(models.Post, {
+      sourceKey: "id",
+      foreignKey: "clubId",
+    });
   };
   return InterestClub;
 };

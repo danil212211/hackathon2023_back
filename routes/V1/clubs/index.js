@@ -19,6 +19,7 @@ router.get("/get/:index", async function (request, response) {
   });
   let clubJson = JSON.parse(JSON.stringify(club));
   clubJson.userCount = await club.countUsers();
+  clubJson.postCount = await club.countPosts();
   response.status(200).json(clubJson);
 });
 router.get("/", async function (request, response) {

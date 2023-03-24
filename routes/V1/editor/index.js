@@ -16,7 +16,7 @@ router.post(
     response.status(200).json({
       success: 1,
       file: {
-        url: "/public/editor/" + resizedImageDestination,
+        url: "/api/public/editor/" + resizedImageDestination,
         // ... and any additional fields you want to store, such as width, height, color, extension, etc
       },
     });

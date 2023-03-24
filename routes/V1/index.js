@@ -3,12 +3,8 @@ const glob = require("glob");
 const path = require("path");
 const { dataParserMiddleware } = require("../../middleware/dataParser");
 const { dontCrash } = require("../../middleware/noCrash");
-const socketCookie = require("../../middleware/socketCookie");
 
-function initRoutes(io) {
-  io.on("new_namespace", (namespace) => {
-    namespace.use(socketCookie);
-  });
+function initRoutes() {
   const routing = express();
   routing.use(dataParserMiddleware);
   routing.use(dontCrash);
@@ -32,9 +28,6 @@ function initRoutes(io) {
     file = "/" + file;
     if (handler.router) {
       routing.use(file, handler.router);
-    }
-    if (handler.initSockets) {
-      handler.initSockets(io);
     }
   });
   return routing;

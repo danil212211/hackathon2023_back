@@ -3,17 +3,21 @@ const router = Router();
 const { Post, User, Vacancy } = require("../../../database");
 
 router.post("/", async function (request, response) {
-    console.log(request.body.requirements);
-  /*  const newVacancy = await Vacancy.create({
-    clubId: request.body.clubId,
+  const newVacancy = await Vacancy.create({
     userLogin: request.body.login,
-    text: request.body.text,
-  });*/
-  response.status(200).json();
+    name: request.body.name,
+    description: request.body.description,
+    requirements: request.body.requirements,
+    contactNumber: request.body.contactNumber,
+    contactEmail: request.body.contactEmail,
+  });
+  response.status(200).json(newVacancy.id);
 });
 router.get("/", async function (request, response) {
-  const events = await Vacancy.findAll();
-  return response.status(200).json(JSON.parse(JSON.stringify(events)));
+  const vacancies = await Vacancy.findAll({
+    order: [["createdAt", "DESC"]],
+  });
+  return response.status(200).json(JSON.parse(JSON.stringify(vacancies)));
 });
 module.exports = {
   router,

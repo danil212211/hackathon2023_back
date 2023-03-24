@@ -26,15 +26,20 @@ module.exports = (sequelize, DataTypes) => {
       place: {
         type: DataTypes.TEXT,
       },
+      image: {
+        type: DataTypes.TEXT,
+      },
     },
     options
   );
   Event.associate = function (models) {
     Event.belongsTo(models.User, {
+      as: "creator",
       targetKey: "login",
       foreignKey: "userLogin",
     });
     Event.belongsToMany(models.User, {
+        as:"subs",
       through: models.EventParticipant,
       foreignKey: "eventId",
       sourceKey: "id",
